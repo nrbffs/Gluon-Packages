@@ -29,7 +29,7 @@ for i in `seq 1 10`;
 do
   GW=$(printf "gw%02d" $i)
   OLDPEER=$(uci get fastd.mesh_vpn_backbone_peer_$GW.remote)
-  NEWPEER="\"${GW}s$SEGNUM.freifunk-stuttgart.de\" port $PORT"
+  NEWPEER="\"${GW}s$SEGNUM.gw.freifunk-stuttgart.de\" port $PORT"
 
   if [ "$NEWPEER" != "$OLDPEER" ]; then
     uci set fastd.mesh_vpn_backbone_peer_$GW.remote="$NEWPEER"
