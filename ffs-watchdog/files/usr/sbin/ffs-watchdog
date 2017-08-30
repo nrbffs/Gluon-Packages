@@ -18,7 +18,6 @@ if [ "$(uci get gluon-setup-mode.@setup_mode[0].enabled)" = "0" ]; then
       logger -t $ME "offline for ${DELTA} sec."
 
       if [ $DELTA -gt 1000 ]; then
-        rm $FFS
         reboot
       fi
     else
