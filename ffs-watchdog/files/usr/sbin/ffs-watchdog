@@ -7,7 +7,8 @@ fi
 
 FFS=/tmp/.gw.ffs
 if [ "$(uci get gluon-setup-mode.@setup_mode[0].enabled)" = "0" ] &&
-   [ "$(uci get system.@system[0].enable_watchdog)" != "0" ]; then
+   [ "$(uci get system.@system[0].enable_watchdog)" != "0" ] &&
+   [ "$(netstat -nt | grep -c ':22')" = "0" ]; then
   NOW=$(date +%s)
   if [ -n "$(batctl gwl | grep '=>')" ]; then
     echo $NOW >$FFS
