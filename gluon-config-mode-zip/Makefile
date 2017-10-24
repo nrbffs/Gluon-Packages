@@ -15,7 +15,7 @@ define Package/gluon-config-mode-zip
   SECTION:=gluon
   CATEGORY:=Gluon
   TITLE:=Set ZIP-Code location of a node
-  DEPENDS:=gluon-config-mode-core-virtual +gluon-node-info
+  DEPENDS:=+gluon-config-mode-core +gluon-node-info
 endef
 
 define Build/Prepare
