@@ -1,6 +1,6 @@
 local cbi = require "luci.cbi"
 local i18n = require "luci.i18n"
-local uci = luci.model.uci.cursor()
+local uci = require("simple-uci").cursor()
 
 local M = {}
 
@@ -19,13 +19,9 @@ end
 function M.handle(data)
     local sname = uci:get_first("gluon-node-info", "location")
 
-    if data._zip ~= nil then
-	    uci:set("gluon-node-info", sname, "zip", data._zip:trim())
-    else
-        uci:delete("gluon-node-info", sname, "zip")
-    end
-        uci:save("gluon-node-info")
-        uci:commit("gluon-node-info")     
+    uci:set("gluon-node-info", sname, "zip", data._zip:trim())
+    uci:save("gluon-node-info")
+    uci:commit("gluon-node-info")     
 end
         
 return M
