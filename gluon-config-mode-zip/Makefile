@@ -6,7 +6,7 @@ PKG_VERSION:=1
 PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)
 PKG_BUILD_DEPENDS := respondd
 
-include $(GLUONDIR)/include/package.mk
+include $(TOPDIR)/../package/gluon.mk
 
 PKG_CONFIG_DEPENDS += $(GLUON_I18N_CONFIG)
 
@@ -15,7 +15,7 @@ define Package/gluon-config-mode-zip
   SECTION:=gluon
   CATEGORY:=Gluon
   TITLE:=Set ZIP-Code location of a node
-  DEPENDS:=gluon-config-mode-core-virtual +gluon-node-info
+  DEPENDS:=+gluon-config-mode-core +gluon-node-info
 endef
 
 define Build/Prepare
