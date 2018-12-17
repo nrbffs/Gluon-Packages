@@ -26,7 +26,7 @@ if [ -z "$SEGINFO" ]; then
   logger -t $ME "Node not registered"
   GITSEG=00
 else
-  GITSEG=$(printf "%02d" $(echo ${SEGINFO/Address 1: 2001:2:0:711::/} |cut -d' ' -f1 | cut -d':' -f2))
+  GITSEG=$(echo ${SEGINFO/Address 1: 2001:2:0:711::/} |cut -d' ' -f1 | cut -d':' -f2)
 fi
 
 if [ "$GITSEG" == "00" ]; then
@@ -43,9 +43,9 @@ let PORT=GITSEG+10200
 CHANGED=0
 for i in `seq 1 10`;
 do
-  GW=$(printf "gw%02d" $i)
+  GW=$(printf "gw%02ds%02d" $i $GITSEG)
   OLDPEER=$(uci get fastd.mesh_vpn_backbone_peer_${GW}.remote)
-  NEWPEER="\"${GW}s${GITSEG}.gw.freifunk-stuttgart.de\" port $PORT"
+  NEWPEER="\"${GW}.gw.freifunk-stuttgart.de\" port $PORT"
 
   if [ "$NEWPEER" != "$OLDPEER" ]; then
     uci set fastd.mesh_vpn_backbone_peer_${GW}.remote="$NEWPEER"
